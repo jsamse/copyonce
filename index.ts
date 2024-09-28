@@ -68,7 +68,7 @@ while (true) {
     const files = (await readdir(src, { recursive: true }));
 
     for (const file of files) {
-        const stats = await stat(`./lab/src/${file}`);
+        const stats = await stat(`${src}${sep}${file}`);
         const row = db.query("SELECT modified, size FROM files WHERE path = ?").as(File).get(file);
         if (stats.isDirectory()) {
             if (!row) {
